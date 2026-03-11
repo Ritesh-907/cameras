@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Festival Wishes ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Tiro+Devanagari+Hindi&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ─── TOKENS ─── */
+:root{
+  --ink:#0b0014;
+  --gold:#f0c040;
+  --gold2:#e8860a;
+  --rose:#ff3d7f;
+  --violet:#7b2fff;
+  --cream:#fff9f0;
+  --glass:rgba(255,255,255,0.06);
+  --glassBorder:rgba(255,200,80,0.2);
+}
+
+/* ─── BODY / CANVAS ─── */
+body{
+  font-family:'Raleway',sans-serif;
+  background:var(--ink);
+  color:var(--cream);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* animated mesh background */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%,  rgba(123,47,255,.35) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 20%,  rgba(240,192,64,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 50% 90%,  rgba(255,61,127,.28) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 80%,  rgba(123,47,255,.20) 0%,transparent 50%),
+    #0b0014;
+  z-index:0;pointer-events:none;
+  animation:meshShift 12s ease-in-out infinite alternate;
+}
+@keyframes meshShift{
+  from{filter:hue-rotate(0deg)}
+  to  {filter:hue-rotate(30deg)}
+}
+
+/* noise grain overlay */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index:0;pointer-events:none;opacity:.5;
+}
+
+/* ─── PARTICLES (CSS only) ─── */
+.particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.p{
+  position:absolute;
+  border-radius:50%;
+  animation:rise linear infinite;
+  opacity:0;
+}
+.p:nth-child(1) {width:4px;height:4px;left:10%;background:var(--gold);animation-duration:8s;animation-delay:0s}
+.p:nth-child(2) {width:3px;height:3px;left:25%;background:var(--rose);animation-duration:11s;animation-delay:2s}
+.p:nth-child(3) {width:5px;height:5px;left:40%;background:var(--gold2);animation-duration:9s;animation-delay:1s}
+.p:nth-child(4) {width:2px;height:2px;left:55%;background:var(--violet);animation-duration:13s;animation-delay:3s}
+.p:nth-child(5) {width:4px;height:4px;left:70%;background:var(--gold);animation-duration:7s;animation-delay:0.5s}
+.p:nth-child(6) {width:3px;height:3px;left:85%;background:var(--rose);animation-duration:10s;animation-delay:1.5s}
+.p:nth-child(7) {width:6px;height:6px;left:5%;background:var(--gold2);animation-duration:12s;animation-delay:4s}
+.p:nth-child(8) {width:3px;height:3px;left:60%;background:var(--violet);animation-duration:8.5s;animation-delay:2.5s}
+.p:nth-child(9) {width:4px;height:4px;left:33%;background:var(--gold);animation-duration:9.5s;animation-delay:6s}
+.p:nth-child(10){width:2px;height:2px;left:78%;background:var(--rose);animation-duration:14s;animation-delay:3.5s}
+@keyframes rise{
+  0%  {transform:translateY(100vh) scale(0);opacity:0}
+  10% {opacity:.8}
+  90% {opacity:.6}
+  100%{transform:translateY(-10vh) scale(1.4);opacity:0}
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page{
+  position:relative;z-index:2;
+  max-width:480px;margin:0 auto;
+  padding:0 0 100px;
+}
+
+/* ─── TOP ORNAMENT ─── */
+.ornament{
+  text-align:center;
+  padding:28px 16px 10px;
+  font-size:11px;
+  letter-spacing:8px;
+  color:rgba(240,192,64,.5);
+  text-transform:uppercase;
+}
+.ornament-line{
+  display:flex;align-items:center;gap:12px;
+  justify-content:center;
+  margin:6px 0;
+}
+.ornament-line::before,.ornament-line::after{
+  content:'';flex:1;max-width:80px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(240,192,64,.5),transparent);
+}
+.ornament-dot{
+  width:6px;height:6px;
+  background:var(--gold);border-radius:50%;
+  box-shadow:0 0 8px var(--gold);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ─── HERO TITLE ─── */
+.hero{
+  text-align:center;
+  padding:20px 24px 0;
+}
+.hero-eyebrow{
+  font-size:12px;letter-spacing:5px;
+  color:var(--gold2);text-transform:uppercase;
+  margin-bottom:12px;opacity:.85;
+}
+.hero-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(28px,9vw,52px);
+  font-weight:900;
+  line-height:1.15;
+  background:linear-gradient(135deg,#ffe580 0%,#ff8c00 35%,#ff3d7f 60%,#ffe580 100%);
+  background-size:300% 300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:titleShimmer 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(240,192,64,.4));
+}
+@keyframes titleShimmer{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.hero-sub{
+  font-family:'Tiro Devanagari Hindi',serif;
+  font-size:clamp(14px,4vw,18px);
+  color:rgba(255,249,240,.7);
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* ─── AVATAR CARD ─── */
+.avatar-card{
+  margin:32px 20px 0;
+  background:var(--glass);
+  border:1px solid var(--glassBorder);
+  border-radius:32px;
+  padding:32px 20px 28px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    0 30px 60px rgba(0,0,0,.5),
+    0 0 80px rgba(123,47,255,.15);
+  position:relative;overflow:hidden;
+}
+.avatar-card::before{
+  content:'';
+  position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent 70%,rgba(240,192,64,.06) 80%,transparent 90%);
+  animation:cardSpin 20s linear infinite;
+  pointer-events:none;
+}
+@keyframes cardSpin{to{transform:rotate(360deg)}}
+
+.avatar-label{
+  font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(240,192,64,.6);
+}
+
+/* ─── AVATAR RING ─── */
+.avatar-ring{
+  position:relative;
+  width:220px;height:220px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* outer spinning rings */
+.ring-outer,.ring-mid,.ring-inner{
+  position:absolute;inset:0;
+  border-radius:50%;
+  border:2px solid transparent;
+}
+.ring-outer{
+  border-top-color:var(--gold);
+  border-right-color:rgba(240,192,64,.3);
+  animation:spinCW 4s linear infinite;
+}
+.ring-mid{
+  inset:8px;
+  border-left-color:var(--rose);
+  border-bottom-color:rgba(255,61,127,.3);
+  animation:spinCCW 6s linear infinite;
+}
+.ring-inner{
+  inset:16px;
+  border-top-color:var(--violet);
+  border-right-color:rgba(123,47,255,.3);
+  animation:spinCW 9s linear infinite;
+}
+@keyframes spinCW {to{transform:rotate(360deg)}}
+@keyframes spinCCW{to{transform:rotate(-360deg)}}
+
+/* avatar circle */
+.avatar-circle{
+  position:absolute;
+  inset:24px;
+  border-radius:50%;
+  overflow:hidden;
+  background:radial-gradient(circle at 35% 30%,#2a0a3a,#0b0014);
+  border:2px solid rgba(255,255,255,.08);
+  box-shadow:0 0 40px rgba(0,0,0,.8) inset;
+  cursor:pointer;
+  transition:box-shadow .3s;
+}
+.avatar-circle:hover{
+  box-shadow:0 0 60px rgba(240,192,64,.25) inset, 0 0 0 2px rgba(240,192,64,.3);
+}
+
+/* placeholder state */
+.av-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:8px;
+  color:rgba(240,192,64,.5);
+  font-size:12px;text-align:center;
+  padding:12px;
+  transition:opacity .3s;
+}
+.av-placeholder .icon{
+  font-size:44px;
+  animation:floatIcon 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 12px rgba(240,192,64,.4));
+}
+@keyframes floatIcon{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-6px) scale(1.05)}
+}
+.av-placeholder span{
+  font-size:11px;letter-spacing:1px;
+  color:rgba(240,192,64,.5);
+}
+
+/* result image */
+#avatarImg{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:none;
+  border-radius:50%;
+}
+
+/* gold shimmer overlay on top of avatar */
+.av-shine{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,rgba(255,230,100,.12),transparent 60%);
+  pointer-events:none;
+}
+
+/* ─── CAPTURE BUTTON ─── */
+.btn-capture{
+  position:relative;
+  background:linear-gradient(135deg,#f0c040,#e8860a,#ff3d7f);
+  background-size:200% 200%;
+  animation:btnShimmer 3s ease-in-out infinite;
+  border:none;border-radius:50px;
+  padding:14px 36px;
+  font-family:'Cinzel Decorative',serif;
+  font-size:14px;font-weight:700;
+  color:#0b0014;
+  cursor:pointer;
+  letter-spacing:1px;
+  box-shadow:0 8px 30px rgba(240,134,10,.45),0 2px 8px rgba(0,0,0,.5);
+  transition:transform .2s,box-shadow .2s;
+  overflow:hidden;
+}
+.btn-capture::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.btn-capture:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 40px rgba(240,134,10,.6)}
+.btn-capture:hover::before{opacity:1}
+.btn-capture:active{transform:scale(.97)}
+@keyframes btnShimmer{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+
+/* retake btn */
+.btn-retake{
+  display:none;
+  background:transparent;
+  border:1px solid rgba(240,192,64,.4);
+  color:rgba(240,192,64,.8);
+  border-radius:30px;padding:8px 22px;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.btn-retake:hover{border-color:var(--gold);color:var(--gold);background:rgba(240,192,64,.08)}
+.btn-retake.show{display:inline-block}
+
+/* ─── WISH SECTION ─── */
+.wish-section{
+  margin:28px 20px 0;
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.wish-block{
+  border-radius:20px;
+  padding:18px 22px;
+  font-size:15px;line-height:1.7;
+  text-align:center;
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid transparent;
+  animation:fadeSlide .6s ease both;
+}
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(20px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+.wish-block:nth-child(1){animation-delay:.1s}
+.wish-block:nth-child(2){animation-delay:.2s}
+.wish-block:nth-child(3){animation-delay:.3s}
+.wish-block:nth-child(4){animation-delay:.4s}
+.wish-block:nth-child(5){animation-delay:.5s}
+
+.wish-block.gold{
+  background:linear-gradient(135deg,rgba(240,192,64,.18),rgba(232,134,10,.12));
+  border-color:rgba(240,192,64,.25);
+  color:var(--gold);
+}
+.wish-block.rose{
+  background:linear-gradient(135deg,rgba(255,61,127,.15),rgba(180,20,80,.1));
+  border-color:rgba(255,61,127,.25);
+  color:#ffb3cb;
+}
+.wish-block.violet{
+  background:linear-gradient(135deg,rgba(123,47,255,.18),rgba(60,10,120,.12));
+  border-color:rgba(123,47,255,.3);
+  color:#cbb3ff;
+}
+.wish-block.glass{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.1);
+  color:rgba(255,249,240,.85);
+}
+.wish-block.hindi{
+  font-family:'Tiro Devanagari Hindi',serif;
+  font-size:16px;
+  background:linear-gradient(135deg,rgba(240,192,64,.1),rgba(123,47,255,.1));
+  border-color:rgba(240,192,64,.2);
+  color:rgba(255,249,240,.9);
+}
+
+.wish-block-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:20px;font-weight:700;
+  background:linear-gradient(90deg,#ffe580,#ff8c00,#ff3d7f);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;margin-bottom:6px;
+}
+
+/* ─── NAME DISPLAY ─── */
+.name-display{
+  text-align:center;
+  margin:24px 20px 0;
+  position:relative;
+  z-index:2;
+}
+.name-glow{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(18px,6vw,30px);
+  font-weight:900;
+  text-transform:uppercase;
+  color:#fff;
+  letter-spacing:3px;
+  animation:nameGlow 5s ease-in-out infinite;
+  line-height:1.4;
+  word-break:break-word;
+}
+@keyframes nameGlow{
+  0%,100%{text-shadow:0 0 20px rgba(240,192,64,.8),0 0 40px rgba(240,192,64,.4)}
+  33%    {text-shadow:0 0 20px rgba(255,61,127,.8),0 0 40px rgba(255,61,127,.4)}
+  66%    {text-shadow:0 0 20px rgba(123,47,255,.8),0 0 40px rgba(123,47,255,.4)}
+}
+
+/* ─── SHARE BAR ─── */
+.share-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  display:flex;z-index:100;
+  padding:10px 12px 14px;
+  gap:10px;
+  background:linear-gradient(to top,rgba(11,0,20,.98),rgba(11,0,20,.7));
+  backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.share-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  height:48px;border-radius:16px;
+  font-size:15px;font-weight:700;font-family:'Raleway',sans-serif;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  letter-spacing:.5px;
+}
+.share-btn:hover{transform:translateY(-2px)}
+.share-wa{
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  color:#fff;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+}
+.share-fb{
+  background:linear-gradient(135deg,#1877f2,#0a4dbf);
+  color:#fff;
+  box-shadow:0 4px 20px rgba(24,119,242,.4);
+}
+
+/* ─── CAMERA MODAL ─── */
+.cam-modal{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(5,0,15,.97);
+  z-index:300;
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:24px;
+  padding:20px;
+}
+.cam-modal.open{display:flex}
+
+.cam-modal-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:18px;font-weight:700;
+  color:var(--gold);
+  text-align:center;
+  letter-spacing:2px;
+  filter:drop-shadow(0 0 12px rgba(240,192,64,.5));
+}
+
+/* live video ring */
+.cam-ring{
+  position:relative;
+  width:min(280px,80vw);
+  height:min(280px,80vw);
+  display:flex;align-items:center;justify-content:center;
+}
+.cam-ring-a,.cam-ring-b{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid transparent;
+}
+.cam-ring-a{border-top-color:var(--gold);border-right-color:rgba(240,192,64,.3);animation:spinCW 3s linear infinite}
+.cam-ring-b{border-left-color:var(--rose);border-bottom-color:rgba(255,61,127,.3);animation:spinCCW 5s linear infinite}
+
+.cam-video-wrap{
+  position:absolute;inset:14px;
+  border-radius:50%;overflow:hidden;
+  border:2px solid rgba(255,255,255,.1);
+  box-shadow:0 0 40px rgba(0,0,0,.9) inset;
+}
+#liveVideo{
+  width:100%;height:100%;
+  object-fit:cover;
+  transform:scaleX(-1);
+}
+.cam-overlay{
+  position:absolute;inset:14px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(240,192,64,.08),transparent 60%);
+  pointer-events:none;
+}
+
+/* snap button */
+.snap-btn{
+  width:72px;height:72px;border-radius:50%;
+  background:conic-gradient(var(--gold),var(--gold2),var(--rose),var(--violet),var(--gold));
+  border:none;cursor:pointer;
+  font-size:28px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 4px rgba(240,192,64,.2),0 0 40px rgba(240,192,64,.4);
+  transition:transform .15s,box-shadow .15s;
+  animation:snapPulse 2s ease-in-out infinite;
+}
+.snap-btn:active{transform:scale(.9)}
+@keyframes snapPulse{
+  0%,100%{box-shadow:0 0 0 4px rgba(240,192,64,.2),0 0 40px rgba(240,192,64,.4)}
+  50%    {box-shadow:0 0 0 8px rgba(240,192,64,.1),0 0 60px rgba(240,192,64,.6)}
+}
+
+.cam-close{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.5);
+  border-radius:20px;padding:8px 24px;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.cam-close:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.8)}
+
+/* flash */
+.flash{
+  position:fixed;inset:0;background:#fff;
+  z-index:400;pointer-events:none;opacity:0;
+}
+.flash.go{animation:flashOut .5s ease-out forwards}
+@keyframes flashOut{0%{opacity:1}100%{opacity:0}}
+
+/* hidden canvases for JS */
+#snapCanvas,#hiddenCanvas{display:none}
+</style>
+</head>
+<body>
+
+<!-- particles -->
+<div class="particles">
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div>
+</div>
+
+<div class="page">
+
+  <!-- ornament -->
+  <div class="ornament">
+    <div class="ornament-line">
+      <div class="ornament-dot"></div>
+      <span>शुभकामनाएँ</span>
+      <div class="ornament-dot"></div>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">✦ Festival Greetings ✦</div>
+    <div class="hero-title">Happy<br>Festival</div>
+    <div class="hero-sub">आपको और आपके परिवार को हार्दिक शुभकामनाएँ</div>
+  </div>
+
+  <!-- avatar card -->
+  <div class="avatar-card">
+    <div class="avatar-label">✦ Your Festival Avatar ✦</div>
+
+    <div class="avatar-ring">
+      <div class="ring-outer"></div>
+      <div class="ring-mid"></div>
+      <div class="ring-inner"></div>
+      <div class="avatar-circle" id="avatarCircle" onclick="openCamera()">
+        <div class="av-placeholder" id="avPlaceholder">
+          <div class="icon">📸</div>
+          <span>Tap to capture<br>your avatar</span>
+        </div>
+        <img id="avatarImg" alt="Your Avatar"/>
+        <div class="av-shine"></div>
+      </div>
+    </div>
+
+    <button class="btn-capture" onclick="openCamera()">✦ Take My Photo ✦</button>
+    <button class="btn-retake" id="btnRetake" onclick="openCamera()">🔄 Retake</button>
+  </div>
+
+  <!-- name (prompt) -->
+  <div class="name-display">
+    <div class="name-glow" id="nameDisplay"></div>
+  </div>
+
+  <!-- wishes -->
+  <div class="wish-section">
+    <div class="wish-block gold">
+      <span class="wish-block-title">✪ Happy Festival ✪</span>
+      Wishing you joy, light, and love on this auspicious occasion.
+    </div>
+    <div class="wish-block rose">
+      🌸 May this festival bring peace, prosperity, and happiness to you and your entire family.
+    </div>
+    <div class="wish-block violet">
+      ✨ May every moment of this celebration be filled with laughter, warmth, and blessings from above.
+    </div>
+    <div class="wish-block hindi">
+      🙏 इस पावन पर्व पर आपको और आपके परिवार को ढेर सारी खुशियाँ मिलें। आपका जीवन सुख-समृद्धि से भरा रहे।
+    </div>
+    <div class="wish-block glass">
+      💫 I wish that this festival is the most beautiful one you've ever celebrated. You deserve all the happiness in the world.
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- share bar -->
+<div class="share-bar">
+  <a class="share-btn share-wa" href="whatsapp://send?text=Festival+Wishes+for+you!+forwarding_link" data-action="share/whatsapp/share">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Share
+  </a>
+  <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=forwarding_link" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    Share
+  </a>
+</div>
+
+<!-- ══ STEP 1: WELCOME / NAME SCREEN (shown on load) ══ -->
+<div id="welcomeScreen" style="
+  position:fixed;inset:0;z-index:500;
+  background:radial-gradient(ellipse at 50% 40%, #1a0030 0%, #0b0014 70%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:24px;padding:32px 24px;text-align:center;">
+
+  <div style="font-size:52px;animation:floatIcon 3s ease-in-out infinite;">🎉</div>
+
+  <div style="font-family:'Cinzel Decorative',serif;font-size:clamp(20px,7vw,32px);font-weight:900;
+    background:linear-gradient(135deg,#ffe580,#ff8c00,#ff3d7f);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+    Festival Wishes
+  </div>
+
+  <p style="font-size:14px;color:rgba(255,249,240,.6);letter-spacing:1px;max-width:300px;line-height:1.7;">
+    Enter your name, then we'll open your camera so you can take a festival photo! 📸
+  </p>
+
+  <!-- name input -->
+  <div style="width:100%;max-width:320px;">
+    <input id="nameInput" type="text" placeholder="Your name here…" maxlength="30"
+      style="
+        width:100%;padding:14px 20px;
+        background:rgba(255,255,255,0.07);
+        border:1px solid rgba(240,192,64,0.4);
+        border-radius:50px;
+        color:#fff;font-size:16px;font-family:'Raleway',sans-serif;
+        outline:none;text-align:center;letter-spacing:1px;
+        transition:border-color .2s,box-shadow .2s;"
+      onfocus="this.style.borderColor='rgba(240,192,64,0.9)';this.style.boxShadow='0 0 20px rgba(240,192,64,0.2)'"
+      onblur="this.style.borderColor='rgba(240,192,64,0.4)';this.style.boxShadow='none'"
+      onkeydown="if(event.key==='Enter') startExperience()"/>
+  </div>
+
+  <!-- big CTA → opens camera -->
+  <button onclick="startExperience()" style="
+    background:linear-gradient(135deg,#f0c040,#e8860a,#ff3d7f);
+    border:none;border-radius:50px;
+    padding:16px 48px;
+    font-family:'Cinzel Decorative',serif;font-size:15px;font-weight:700;
+    color:#0b0014;cursor:pointer;letter-spacing:1px;
+    box-shadow:0 8px 30px rgba(240,134,10,.5);
+    transition:transform .2s,box-shadow .2s;"
+    onmouseover="this.style.transform='translateY(-2px) scale(1.04)'"
+    onmouseout="this.style.transform='none'">
+    📸 &nbsp;Continue &amp; Open Camera
+  </button>
+
+  <p style="font-size:11px;color:rgba(255,255,255,.25);letter-spacing:1px;">
+    Your browser will ask for camera permission
+  </p>
+</div>
+
+<!-- ══ STEP 2: CAMERA MODAL ══ -->
+<div class="cam-modal" id="camModal">
+  <div class="cam-modal-title">📸 Take Your Festival Photo!</div>
+  <p style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;margin-top:-16px;">
+    Position your face · Then tap 📷
+  </p>
+
+  <div class="cam-ring">
+    <div class="cam-ring-a"></div>
+    <div class="cam-ring-b"></div>
+    <div class="cam-video-wrap">
+      <video id="liveVideo" autoplay playsinline muted></video>
+    </div>
+    <div class="cam-overlay"></div>
+  </div>
+
+  <!-- status text -->
+  <p id="camStatus" style="font-size:13px;color:rgba(240,192,64,.8);text-align:center;min-height:20px;">
+    ⏳ Opening camera…
+  </p>
+
+  <div style="text-align:center;">
+    <button class="snap-btn" id="snapBtn" onclick="snapPhoto()" style="opacity:.4;pointer-events:none;">📷</button>
+    <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:10px;">
+      Tap to capture
+    </p>
+  </div>
+
+  <button class="cam-close" onclick="skipCamera()">✕ Skip photo</button>
+</div>
+
+<!-- flash & canvases -->
+<div class="flash" id="flashEl"></div>
+<canvas id="snapCanvas" width="400" height="400" style="display:none;"></canvas>
+
+<script>
+var liveStream = null;
+
+/* Called when user clicks "Continue & Open Camera" button */
+function startExperience() {
+  var nameVal = (document.getElementById('nameInput').value || 'Friend').trim();
+
+  /* Set name on main page */
+  document.getElementById('nameDisplay').textContent = '✦ ' + nameVal.toUpperCase() + ' ✦';
+
+  /* Hide welcome screen */
+  document.getElementById('welcomeScreen').style.display = 'none';
+
+  /* Open camera — this is inside a real click handler so browsers allow it */
+  openCamera();
+}
+
+function openCamera() {
+  var modal  = document.getElementById('camModal');
+  var lv     = document.getElementById('liveVideo');
+  var status = document.getElementById('camStatus');
+  var snapBtn= document.getElementById('snapBtn');
+
+  modal.classList.add('open');
+  status.textContent = '⏳ Waiting for camera permission…';
+  snapBtn.style.opacity = '.4';
+  snapBtn.style.pointerEvents = 'none';
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width:640, height:640 }, audio: false })
+    .then(function(stream) {
+      liveStream = stream;
+      lv.srcObject = stream;
+      lv.onloadedmetadata = function(){ lv.play(); };
+      status.textContent = '✅ Camera ready! Position your face and tap 📷';
+      snapBtn.style.opacity = '1';
+      snapBtn.style.pointerEvents = 'auto';
+    })
+    .catch(function(err) {
+      var msg = err.name === 'NotAllowedError'
+        ? '⚠️ Camera blocked! Please tap the camera icon in your browser address bar and allow access, then tap Retake.'
+        : '⚠️ Camera error: ' + err.message;
+      status.textContent = msg;
+      status.style.color = '#ff6b6b';
+    });
+}
+
+function skipCamera() {
+  document.getElementById('camModal').classList.remove('open');
+  if(liveStream){ liveStream.getTracks().forEach(function(t){ t.stop(); }); liveStream = null; }
+}
+
+function snapPhoto() {
+  var lv  = document.getElementById('liveVideo');
+  var sc  = document.getElementById('snapCanvas');
+  var ctx = sc.getContext('2d');
+
+  /* camera flash effect */
+  var fl = document.getElementById('flashEl');
+  fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+
+  /* draw mirrored frame onto canvas */
+  ctx.save();
+  ctx.translate(400, 0); ctx.scale(-1, 1);
+  ctx.drawImage(lv, 0, 0, 400, 400);
+  ctx.restore();
+
+  /* warm golden tint */
+  ctx.fillStyle = 'rgba(240,180,40,0.07)';
+  ctx.fillRect(0, 0, 400, 400);
+
+  /* circular crop into a new canvas */
+  var fc = document.createElement('canvas');
+  fc.width = 400; fc.height = 400;
+  var fctx = fc.getContext('2d');
+  fctx.beginPath();
+  fctx.arc(200, 200, 200, 0, Math.PI * 2);
+  fctx.clip();
+  fctx.drawImage(sc, 0, 0);
+
+  /* put avatar on the main page ring */
+  var img = document.getElementById('avatarImg');
+  var ph  = document.getElementById('avPlaceholder');
+  var rb  = document.getElementById('btnRetake');
+  img.src = fc.toDataURL('image/png');
+  img.style.display = 'block';
+  ph.style.display  = 'none';
+  rb.classList.add('show');
+
+  /* retake opens camera again */
+  document.getElementById('avatarCircle').onclick = openCamera;
+  rb.onclick = openCamera;
+
+  skipCamera();
+}
+</script>
+</body>
+</html>
